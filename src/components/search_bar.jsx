@@ -8,9 +8,13 @@ class SearchBar extends Component {
     this.timerID = undefined;
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   doSearch = (query) => {
     this.timerID = undefined;
-    this.props.searchFn(query);
+    if (query) this.props.searchFn(query);
   }
 
   delaySearch = (event) => {
@@ -24,6 +28,7 @@ class SearchBar extends Component {
         <input
           className="form-control form-search"
           type="text"
+          value={this.props.defaultQuery}
           onChange={this.delaySearch}
         />
       </div>

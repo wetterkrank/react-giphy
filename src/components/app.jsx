@@ -6,15 +6,17 @@ import Gif from './gif';
 import GifList from './gif_list';
 
 const GIPHY_KEY = process.env.REACT_APP_GIPHY_KEY; // so that we don't have to check it in
+const INITIAL_SEARCH = 'futurama';
+const INITIAL_GIF = '3oriO0OEd9QIDdllqo';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentGif: "3oriO0OEd9QIDdllqo",
+      currentGif: INITIAL_GIF,
       gifs: []
     };
-    this.search('futurama');
+    this.search(INITIAL_SEARCH);
   }
 
   search = (query) => {
@@ -35,7 +37,7 @@ class App extends Component {
     return (
       <div>
         <div className="left-scene">
-          <SearchBar searchFn={this.search} />
+          <SearchBar searchFn={this.search} defaultQuery={INITIAL_SEARCH} />
           <div className="selected-gif">
             <Gif id={currentGif} />
           </div>
